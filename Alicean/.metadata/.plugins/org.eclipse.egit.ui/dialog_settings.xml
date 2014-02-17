@@ -10,8 +10,11 @@
 	<section name="GitCommitMessageComponent">
 	</section>
 	<section name="org.eclipse.egit.ui.internal.pull.PullResultDialog.dialogBounds">
+		<item value="705" key="DIALOG_WIDTH"/>
 		<item value="228" key="DIALOG_Y_ORIGIN"/>
 		<item value="379" key="DIALOG_X_ORIGIN"/>
+		<item value="462" key="DIALOG_HEIGHT"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.egit.ui.internal.fetch.FetchResultDialog.dialogBounds">
 		<item value="700" key="DIALOG_WIDTH"/>
@@ -26,5 +29,7 @@
 		<item value="498" key="DIALOG_HEIGHT"/>
 		<item value="619" key="DIALOG_X_ORIGIN"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+	</section>
+	<section name="FetchGerritChangePage">
 	</section>
 </section>

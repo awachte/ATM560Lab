@@ -1,7 +1,0 @@
-
-public class ClientStub {
-	int getAmount(int acnt)
-	{
-		return 0;
-	}
-}

@@ -37,8 +37,7 @@ public class Client {
 	// this operation increases the balance of user account acnt by amt, and returns nothing
 	void deposit(int acnt, int amt)
 	{
-		try { client.deposit(acnt, amt); }
-		catch(Exception e) {}
+		stub.deposit(acnt, amt);
 	}
 	// this operation decreases the balance of user account acnt by amt, and returns nothing
 	void withdraw(int acnt, int amt)
@@ -48,8 +47,7 @@ public class Client {
 			//error
 		else
 		{
-			try { client.withdraw(acnt, amt); }
-			catch(Exception e) {}
+			stub.withdraw(acnt, amt);
 		}
 	}
 	// this operation transfers money with amount of amt from banking account acnt1 to account acnt2
@@ -60,17 +58,13 @@ public class Client {
 			//error
 		else
 		{
-			try { client.transfer(acnt1, acnt2, amt); }
-			catch(Exception e) {}
+			stub.transfer(acnt1, acnt2, amt);
 		}
 	}
 	// this operation returns the balance of user account acnt
 	int inquiry(int acnt)
 	{
-		int amt=0;
-		try { amt = client.inquiry(acnt); }
-		catch(Exception e) {}
-		return amt;
+		return stub.inquiry(acnt);
 	}
 	
 }

@@ -1,15 +1,13 @@
-import java.rmi.*;
 
 public class ClientStub {
-	String server;
-	int port;
-	
 	ClientStub(String server, int port)
 	{
-		this.server = server;
-		this.port = port;
+		
 	}
-	
+	int getAmount(int acnt)
+	{
+		return 0;
+	}
 	
 	// this operation increases the balance of user account acnt by amt, and returns nothing
 	void deposit(int acnt, int amt)
