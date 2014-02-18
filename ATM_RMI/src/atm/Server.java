@@ -12,9 +12,10 @@ public class Server {
 		}
 		try {
 	            String name = "ATM_Object";
+	            int port = Integer.valueOf(args[0]).intValue();
 	            Server_Client_Interface ATM = new Server_Object();
 	            Server_Client_Interface stub =
-	                (Server_Client_Interface) UnicastRemoteObject.exportObject(ATM, 0);
+	                (Server_Client_Interface) UnicastRemoteObject.exportObject(ATM, port);
 	            Registry registry = LocateRegistry.getRegistry();
 	            registry.rebind(name, stub);
 	            System.out.println("Server bound");
