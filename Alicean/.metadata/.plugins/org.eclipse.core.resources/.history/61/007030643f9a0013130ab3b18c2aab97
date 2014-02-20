@@ -4,9 +4,8 @@ public class Client {
 	static String server;
 	static int port;
 	static String function;
-	static int val1;
-	static int val2;
-	static int val3;
+	static int account;
+	static int amount;
 	
 	static Server_Client_Interface scinterface;
 	
@@ -14,32 +13,69 @@ public class Client {
 	
 	public static void main(String[] args)
 	{
-		setParameters(args);
+		//server = args[0];
 		try { scinterface = (Server_Client_Interface)Naming.lookup(server); }
 		catch(Exception e) { System.out.println("Client excpetion:  " + e); }
+		function = args[1];
+		if (args.length == 2)
+		{
+			//load test file
+			//for each line of text, call function
+		} else
+		{
+			account = 0;
+			try { account = Integer.parseInt(args[2]); }
+			catch (NumberFormatException e) {
+		        System.err.println("Argument 3 must be an integer");
+		        System.exit(1);
+		    }
+			if (args.length == 3)
+			{
+				if (function.equals("inquiry"))  {
+					Client.inquiry(account);
+				} else {
+					System.err.println(help);
+					System.exit(1);
+				}
+				
+				//function = args[2];
+				//account = args[3];
+			} else if (args.length == 4)
+			{
+				amount = 0;
+				try { amount = Integer.parseInt(args[3]); }
+				catch (NumberFormatException e) {
+			        System.err.println("Argument 4 must be an integer");
+			        System.exit(1);
+			    }
+				if (function.equals("withdraw")) {
+					Client.withdraw(account, amount);
+				} else if (function.equals("deposit")) {
+					Client.deposit(account, amount);
+				} else {
+					System.err.println(help);
+				}
+			} else if (args.length == 5)
+			{
+				if (function.equals("transfer"))
+				{
+					int account2 = 0;
+					try { account2 = Integer.parseInt(args[3]); }
+					catch (NumberFormatException e) {
+				        System.err.println("Argument 4 must be an integer");
+				        System.exit(1);
+				    }
+					amount = 0;
+					try { amount = Integer.parseInt(args[4]); }
+					catch (NumberFormatException e) {
+				        System.err.println("Argument 5 must be an integer");
+				        System.exit(1);
+				    }
+					Client.transfer(account, account2, amount);
+				}
+			}
+		}
 		
-		if (function.equals("inquiry") && args.length == 2)  
-		{
-			Client.inquiry(val1);
-		} 
-		else if (function.equals("withdraw") && args.length == 3) 
-		{
-			Client.withdraw(val1, val2);
-		} 
-		else if (function.equals("deposit") && args.length == 3) 
-		{
-			Client.deposit(val1, val2);
-		}
-		else if (function.equals("transfer") && args.length == 4)
-		{
-			Client.transfer(val1, val2, val3);
-		}
-		else
-		{
-			//check to see if real file
-			System.out.println("help");
-			System.exit(1);
-		}
 	}
 	
 	// this operation increases the balance of user account acnt by amt, and returns nothing
@@ -97,45 +133,18 @@ public class Client {
 			System.exit(1);
 		}
 	}
-	
 	// this operation returns the balance of user account acnt
-	private static int inquiry(int acnt)
+	static int inquiry(int acnt)
 	{
 		return getAmount(acnt);
 	}
-	private static void setParameters(String[]args)
+	
+	private void setParameters(String[]args)
 	{
-		if (args.length < 2 || args.length > 5)
-		{
-			System.out.println(help);
-			System.exit(1);
-		}
-		val1 = -1;
-		val2 = -1; 
-		val3 = -1;
 		server = args[0];
 		function = args[1];
-		if (args.length > 2) {
-			try { val1 = Integer.parseInt(args[2]); }
-			catch (NumberFormatException e) {
-		        System.err.println("Argument 3 must be an integer");
-		        System.exit(1);
-		    }
-		}
-		if (args.length > 3) {
-			try { val2 = Integer.parseInt(args[3]); }
-			catch (NumberFormatException e) {
-		        System.err.println("Argument 4 must be an integer");
-		        System.exit(1);
-		    }
-		}
-		if (args.length > 4) {
-			try { val3 = Integer.parseInt(args[4]); }
-			catch (NumberFormatException e) {
-		        System.err.println("Argument 5 must be an integer");
-		        System.exit(1);
-		    }
-		}
+		//account = args[2];
+		//amount = args[3];
 	}
 	private static int getAmount(int acnt)
 	{
@@ -145,3 +154,4 @@ public class Client {
 		return amt;
 	}
 }
+//}

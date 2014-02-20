@@ -97,12 +97,12 @@ public class Client {
 			System.exit(1);
 		}
 	}
-	
 	// this operation returns the balance of user account acnt
-	private static int inquiry(int acnt)
+	static int inquiry(int acnt)
 	{
 		return getAmount(acnt);
 	}
+	
 	private static void setParameters(String[]args)
 	{
 		if (args.length < 2 || args.length > 5)
@@ -145,3 +145,4 @@ public class Client {
 		return amt;
 	}
 }
+//}

@@ -17,7 +17,6 @@ public class Client {
 		setParameters(args);
 		try { scinterface = (Server_Client_Interface)Naming.lookup(server); }
 		catch(Exception e) { System.out.println("Client excpetion:  " + e); }
-		
 		if (function.equals("inquiry") && args.length == 2)  
 		{
 			Client.inquiry(val1);
@@ -97,12 +96,12 @@ public class Client {
 			System.exit(1);
 		}
 	}
-	
 	// this operation returns the balance of user account acnt
-	private static int inquiry(int acnt)
+	static int inquiry(int acnt)
 	{
 		return getAmount(acnt);
 	}
+	
 	private static void setParameters(String[]args)
 	{
 		if (args.length < 2 || args.length > 5)
@@ -145,3 +144,4 @@ public class Client {
 		return amt;
 	}
 }
+//}

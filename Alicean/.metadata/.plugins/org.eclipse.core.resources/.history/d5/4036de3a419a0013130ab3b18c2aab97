@@ -17,28 +17,25 @@ public class Client {
 		setParameters(args);
 		try { scinterface = (Server_Client_Interface)Naming.lookup(server); }
 		catch(Exception e) { System.out.println("Client excpetion:  " + e); }
-		
-		if (function.equals("inquiry") && args.length == 2)  
+		if (function.equals("inquiry"))  
 		{
 			Client.inquiry(val1);
 		} 
-		else if (function.equals("withdraw") && args.length == 3) 
+		else if (function.equals("withdraw")) 
 		{
 			Client.withdraw(val1, val2);
 		} 
-		else if (function.equals("deposit") && args.length == 3) 
+		else if (function.equals("deposit")) 
 		{
 			Client.deposit(val1, val2);
 		}
-		else if (function.equals("transfer") && args.length == 4)
+		else if (function.equals("transfer"))
 		{
 			Client.transfer(val1, val2, val3);
 		}
 		else
 		{
 			//check to see if real file
-			System.out.println("help");
-			System.exit(1);
 		}
 	}
 	
@@ -97,12 +94,12 @@ public class Client {
 			System.exit(1);
 		}
 	}
-	
 	// this operation returns the balance of user account acnt
-	private static int inquiry(int acnt)
+	static int inquiry(int acnt)
 	{
 		return getAmount(acnt);
 	}
+	
 	private static void setParameters(String[]args)
 	{
 		if (args.length < 2 || args.length > 5)
@@ -145,3 +142,4 @@ public class Client {
 		return amt;
 	}
 }
+//}
