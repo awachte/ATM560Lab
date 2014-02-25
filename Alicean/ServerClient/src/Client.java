@@ -1,6 +1,5 @@
 import java.rmi.Naming;
 import java.io.*;
-import java.nio.file.*;
 
 public class Client {
 	static String server;
@@ -106,6 +105,7 @@ public class Client {
 	{
 		return getAmount(acnt);
 	}
+	// reads in all parameters for the client and saves them
 	private static void setParameters(String[]args)
 	{
 		if (args.length < 2 || args.length > 5)
@@ -140,6 +140,7 @@ public class Client {
 		    }
 		}
 	}
+	//calls proper function based on parameters
 	private static int callFunction(String[] args)
 	{
 		if (function.equals("inquiry") && args.length == 2)  
@@ -164,6 +165,7 @@ public class Client {
 		}
 		else return 0;
 	}
+	// makes a balance inquiry from the server
 	private static int getAmount(int acnt)
 	{
 		int amt = 0;
