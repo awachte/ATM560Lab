@@ -1,4 +1,6 @@
 import java.rmi.Naming;
+import java.io.*;
+import java.nio.file.*;
 
 public class Client {
 	static String server;
@@ -18,27 +20,28 @@ public class Client {
 		try { scinterface = (Server_Client_Interface)Naming.lookup(server); }
 		catch(Exception e) { System.out.println("Client excpetion:  " + e); }
 		
-		if (function.equals("inquiry") && args.length == 2)  
+		int i = callFunction(args);
+		if (i == 0)
 		{
-			Client.inquiry(val1);
-		} 
-		else if (function.equals("withdraw") && args.length == 3) 
-		{
-			Client.withdraw(val1, val2);
-		} 
-		else if (function.equals("deposit") && args.length == 3) 
-		{
-			Client.deposit(val1, val2);
-		}
-		else if (function.equals("transfer") && args.length == 4)
-		{
-			Client.transfer(val1, val2, val3);
-		}
-		else
-		{
-			//check to see if real file
-			System.out.println("help");
-			System.exit(1);
+			BufferedReader reader = null;
+			try {
+				reader = new BufferedReader(new FileReader(function));
+			} catch (FileNotFoundException e) {
+				System.out.println("help");
+				System.exit(1);
+			}
+			String line = null;
+			try {
+				while ((line = reader.readLine()) != null)
+				{
+					String[] fileArgs = line.split("");
+					setParameters(fileArgs);
+					i = callFunction(fileArgs);
+					if (i == 0) System.err.println("File line error.");
+				}
+			} catch (IOException e) {
+				System.err.println("File error.");
+			}
 		}
 	}
 	
@@ -136,6 +139,30 @@ public class Client {
 		        System.exit(1);
 		    }
 		}
+	}
+	private static int callFunction(String[] args)
+	{
+		if (function.equals("inquiry") && args.length == 2)  
+		{
+			Client.inquiry(val1);
+			return 1;
+		} 
+		else if (function.equals("withdraw") && args.length == 3) 
+		{
+			Client.withdraw(val1, val2);
+			return 1;
+		} 
+		else if (function.equals("deposit") && args.length == 3) 
+		{
+			Client.deposit(val1, val2);
+			return 1;
+		}
+		else if (function.equals("transfer") && args.length == 4)
+		{
+			Client.transfer(val1, val2, val3);
+			return 1;
+		}
+		else return 0;
 	}
 	private static int getAmount(int acnt)
 	{
