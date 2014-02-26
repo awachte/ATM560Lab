@@ -25,7 +25,7 @@ public class Client {
 	        try {
 	            String name = "ATM_Object";
 	            Registry registry = LocateRegistry.getRegistry(args[0]);
-	            Server_Client_Interface atm = (Server_Client_Interface) registry.lookup(name);
+	            atm = (Server_Client_Interface) registry.lookup(name);
 	            System.out.println("Client bound");
 		} catch (Exception e) {
 	            System.err.println("Client exception:");
