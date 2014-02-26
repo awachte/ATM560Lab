@@ -1,8 +1,9 @@
-package atm;
+package server;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import interact.Server_Client_Interface;
 
 public class Server {
 	
