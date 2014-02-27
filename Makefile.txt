@@ -1,0 +1,28 @@
+JFLAGS = -g
+JC = /usr/lib/jvm/java-7-openjdk-amd64/bin/javac
+.SUFFIXES: .java .class
+.java.class:
+        $(JC) $(JFLAGS) $*.java
+
+CLASSES = \
+        Server_Client_Interface.java \
+        Client.java \
+        Server_Object.java \
+        Server.java
+
+default: Server_Client_Interface.class Client.class Server_Object.class Server.class
+
+Server_Client_Interface.class: Server_Client_Interface.java
+        $(JC) $(JFLAGS) Server_Client_Interface.java
+
+Client.class: Client.java
+        $(JC) $(JFLAGS) Server_Client_Interface.java Client.java
+
+Server_Object.class: Server_Object.java
+        $(JC) $(JFLAGS) Server_Client_Interface.java Server_Object.java
+
+Server.class: Server.java
+        $(JC) $(JFLAGS) Server_Client_Interface.java Server_Object.java Server.java
+
+clean:
+        $(RM) *.class
