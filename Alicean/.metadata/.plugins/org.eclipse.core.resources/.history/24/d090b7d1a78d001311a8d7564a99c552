@@ -1,0 +1,11 @@
+
+public class ClientStub {
+	int getAmount(int acnt)
+	{
+		return 0;
+	}
+	void alterAmount(int acnt, int amt)
+	{
+		
+	}
+}
