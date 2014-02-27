@@ -1,4 +1,4 @@
-package atm;
+package server;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
+import interact.Server_Client_Interface;
 
 public class Server_Object implements Server_Client_Interface {
 
@@ -17,7 +18,7 @@ public class Server_Object implements Server_Client_Interface {
 	public void deposit(int acnt, int amt) throws RemoteException{
 		
 		try {
-			Path file = Paths.get("/accounts.txt");
+			Path file = Paths.get("/home/andy/ATM_RMI/accounts.txt");
 			Charset charset = Charset.forName("UTF-8");
 			accounts = Files.readAllLines(file, charset);
 			
@@ -26,7 +27,7 @@ public class Server_Object implements Server_Client_Interface {
 		}
 		
 		try {
-			Path file = Paths.get("/balances.txt");
+			Path file = Paths.get("/home/andy/ATM_RMI/balances.txt");
 			Charset charset = Charset.forName("UTF-8");
 			balances = Files.readAllLines(file, charset);
 			
@@ -49,7 +50,7 @@ public class Server_Object implements Server_Client_Interface {
 		balances.set(index, dpt);
 		
 		try {
-			Path file = Paths.get("/balances.txt");
+			Path file = Paths.get("/home/andy/ATM_RMI/balances.txt");
 			Charset charset = Charset.forName("UTF-8");
 			Files.write(file, balances, charset);
 			
@@ -65,7 +66,7 @@ public class Server_Object implements Server_Client_Interface {
 	public void withdraw(int acnt, int amt) throws RemoteException{
 		
 		try {
-			Path file = Paths.get("/accounts.txt");
+			Path file = Paths.get("/home/andy/ATM_RMI/accounts.txt");
 			Charset charset = Charset.forName("UTF-8");
 			accounts = Files.readAllLines(file, charset);
 			
@@ -74,7 +75,7 @@ public class Server_Object implements Server_Client_Interface {
 		}
 		
 		try {
-			Path file = Paths.get("/balances.txt");
+			Path file = Paths.get("/home/andy/ATM_RMI/balances.txt");
 			Charset charset = Charset.forName("UTF-8");
 			balances = Files.readAllLines(file, charset);
 			
@@ -97,7 +98,7 @@ public class Server_Object implements Server_Client_Interface {
 		balances.set(index, wdl);
 		
 		try {
-			Path file = Paths.get("/balances.txt");
+			Path file = Paths.get("/home/andy/ATM_RMI/balances.txt");
 			Charset charset = Charset.forName("UTF-8");
 			Files.write(file, balances, charset);
 			
@@ -112,7 +113,7 @@ public class Server_Object implements Server_Client_Interface {
 	public void transfer(int acnt1, int acnt2, int amt) throws RemoteException{
 		
 		try {
-			Path file = Paths.get("/accounts.txt");
+			Path file = Paths.get("/home/andy/ATM_RMI/accounts.txt");
 			Charset charset = Charset.forName("UTF-8");
 			accounts = Files.readAllLines(file, charset);
 			
@@ -121,7 +122,7 @@ public class Server_Object implements Server_Client_Interface {
 		}
 		
 		try {
-			Path file = Paths.get("/balances.txt");
+			Path file = Paths.get("/home/andy/ATM_RMI/balances.txt");
 			Charset charset = Charset.forName("UTF-8");
 			balances = Files.readAllLines(file, charset);
 			
@@ -157,7 +158,7 @@ public class Server_Object implements Server_Client_Interface {
 		balances.set(index2, dpt);
 
 		try {
-			Path file = Paths.get("/balances.txt");
+			Path file = Paths.get("/home/andy/ATM_RMI/balances.txt");
 			Charset charset = Charset.forName("UTF-8");
 			Files.write(file, balances, charset);
 			
@@ -172,7 +173,7 @@ public class Server_Object implements Server_Client_Interface {
 	public int inquiry(int acnt) throws RemoteException{
 		
 		try {
-			Path file = Paths.get("/accounts.txt");
+			Path file = Paths.get("/home/andy/ATM_RMI/accounts.txt");
 			Charset charset = Charset.forName("UTF-8");
 			accounts = Files.readAllLines(file, charset);
 			
@@ -181,7 +182,7 @@ public class Server_Object implements Server_Client_Interface {
 		}
 		
 		try {
-			Path file = Paths.get("/balances.txt");
+			Path file = Paths.get("/home/andy/ATM_RMI/balances.txt");
 			Charset charset = Charset.forName("UTF-8");
 			balances = Files.readAllLines(file, charset);
 			
