@@ -10,64 +10,36 @@ public class Server_Object implements Server_Client_Interface {
 
 	private List<String> accounts = new ArrayList<String>();
 	private List<String> balances = new ArrayList<String>();
-	private String[] account;
-	private String[] balance;
 		
 	public void deposit(int acnt, int amt) throws RemoteException{
-		
-	/*	try {
-			Path file = Paths.get("/home/andy/ATM_RMI/accounts.txt");
-			Charset charset = Charset.forName("UTF-8");
-			accounts = Files.readAllLines(file, charset);
-			
-		} catch (IOException x) {
-			System.err.println(x);
-		}
-		
-		try {
-			Path file = Paths.get("/home/andy/ATM_RMI/balances.txt");
-			Charset charset = Charset.forName("UTF-8");
-			balances = Files.readAllLines(file, charset);
-			
-		} catch (IOException x) {
-			System.err.println(x);
-		}*/
 		
 		BufferedReader reader = null;
 		try {
 			reader = new BufferedReader(new FileReader("/home/andy/ATM_RMI/accounts.txt"));
-			String acc = null;
-			int i = 0;
+			String acc;
 			while ((acc = reader.readLine()) != null)
 			{
-				account[i] = acc; 
-				++i;
+				accounts.add(acc);
 			}
 			reader.close();
 		
 		} catch (IOException x) {
 			System.err.println(x);
 		}
-		
-		accounts = Arrays.asList(account);
-		
+				
 		BufferedReader reader2 = null;
 		try {
 			reader2 = new BufferedReader(new FileReader("/home/andy/ATM_RMI/balances.txt"));
-			String blc = null;
-			int j = 0;
+			String blc;
 			while ((blc = reader2.readLine()) != null)
 			{
-				balance[j] = blc; 
-				++j;
+				balances.add(blc);
 			}
 			reader2.close();
 		
 		} catch (IOException x) {
 			System.err.println(x);
 		}
-		
-		balances = Arrays.asList(balance);
 		
 		String a = String.valueOf(acnt);
 		
@@ -82,30 +54,17 @@ public class Server_Object implements Server_Client_Interface {
 		String dpt = String.valueOf(amt + bal);
 		
 		balances.set(index, dpt);
+				
+		try {
+		    BufferedWriter writer= new BufferedWriter(new FileWriter("/home/andy/ATM_RMI/balances.txt", false));
+		    for (int k = 0; k < 12; k++){
+		    	writer.write(balances.get(k));
+		    	writer.newLine();
+		    }
+		    writer.close();
 		
-		
-/*		try {
-			Path file = Paths.get("/home/andy/ATM_RMI/balances.txt");
-			Charset charset = Charset.forName("UTF-8");
-			Files.write(file, balances, charset);
-			
 		} catch (IOException x) {
 			System.err.println(x);
-		}
-*/		
-		balance = (String[]) balances.toArray();
-		
-		try {
-			BufferedWriter writer = new BufferedWriter(new FileWriter("/home/andy/ATM_RMI/balances.txt"));
-			int k = 0;
-			while ((balance[k]) != null)
-			{
-				writer.write(balance[k]+"\n");
-				++k;
-			}
-			writer.close();
-		} catch (IOException x) {
-		    System.err.format("IOException:" + x);
 		}
 						
 		System.out.println("$" + amt + " successfully deposited into account " + acnt + ".");
@@ -115,60 +74,33 @@ public class Server_Object implements Server_Client_Interface {
 	@Override
 	public void withdraw(int acnt, int amt) throws RemoteException{
 		
-	/*	try {
-			Path file = Paths.get("/home/andy/ATM_RMI/accounts.txt");
-			Charset charset = Charset.forName("UTF-8");
-			accounts = Files.readAllLines(file, charset);
-			
-		} catch (IOException x) {
-			System.err.println(x);
-		}
-		
-		try {
-			Path file = Paths.get("/home/andy/ATM_RMI/balances.txt");
-			Charset charset = Charset.forName("UTF-8");
-			balances = Files.readAllLines(file, charset);
-			
-		} catch (IOException x) {
-			System.err.println(x);
-		}
-	*/
-
 		BufferedReader reader = null;
 		try {
 			reader = new BufferedReader(new FileReader("/home/andy/ATM_RMI/accounts.txt"));
-			String acc = null;
-			int i = 0;
+			String acc;
 			while ((acc = reader.readLine()) != null)
 			{
-				account[i] = acc; 
-				++i;
+				accounts.add(acc);
 			}
 			reader.close();
 		
 		} catch (IOException x) {
 			System.err.println(x);
 		}
-		
-		accounts = Arrays.asList(account);
-		
+				
 		BufferedReader reader2 = null;
 		try {
 			reader2 = new BufferedReader(new FileReader("/home/andy/ATM_RMI/balances.txt"));
-			String blc = null;
-			int j = 0;
+			String blc;
 			while ((blc = reader2.readLine()) != null)
 			{
-				balance[j] = blc; 
-				++j;
+				balances.add(blc);
 			}
 			reader2.close();
 		
 		} catch (IOException x) {
 			System.err.println(x);
 		}
-		
-		balances = Arrays.asList(balance);
 		
 		String a = String.valueOf(acnt);
 		
@@ -184,28 +116,16 @@ public class Server_Object implements Server_Client_Interface {
 		
 		balances.set(index, wdl);
 		
-/*		try {
-			Path file = Paths.get("/home/andy/ATM_RMI/balances.txt");
-			Charset charset = Charset.forName("UTF-8");
-			Files.write(file, balances, charset);
-			
+		try {
+		    BufferedWriter writer= new BufferedWriter(new FileWriter("/home/andy/ATM_RMI/balances.txt", false));
+		    for (int k = 0; k < 12; k++){
+		    	writer.write(balances.get(k));
+		    	writer.newLine();
+		    }
+		    writer.close();
+		
 		} catch (IOException x) {
 			System.err.println(x);
-		}
-*/		
-		balance = (String[]) balances.toArray();
-		
-		try {
-			BufferedWriter writer = new BufferedWriter(new FileWriter("/home/andy/ATM_RMI/balances.txt"));
-			int k = 0;
-			while ((balance[k]) != null)
-			{
-				writer.write(balance[k]+"\n");
-				++k;
-			}
-			writer.close();
-		} catch (IOException x) {
-		    System.err.format("IOException:" + x);
 		}
 		
 		System.out.println("$" + amt + " successfully withdrawn from account " + acnt + ".");
@@ -214,59 +134,33 @@ public class Server_Object implements Server_Client_Interface {
 	@Override
 	public void transfer(int acnt1, int acnt2, int amt) throws RemoteException{
 		
-/*		try {
-			Path file = Paths.get("/home/andy/ATM_RMI/accounts.txt");
-			Charset charset = Charset.forName("UTF-8");
-			accounts = Files.readAllLines(file, charset);
-			
-		} catch (IOException x) {
-			System.err.println(x);
-		}
-		
-		try {
-			Path file = Paths.get("/home/andy/ATM_RMI/balances.txt");
-			Charset charset = Charset.forName("UTF-8");
-			balances = Files.readAllLines(file, charset);
-			
-		} catch (IOException x) {
-			System.err.println(x);
-		}
-*/
 		BufferedReader reader = null;
 		try {
 			reader = new BufferedReader(new FileReader("/home/andy/ATM_RMI/accounts.txt"));
-			String acc = null;
-			int i = 0;
+			String acc;
 			while ((acc = reader.readLine()) != null)
 			{
-				account[i] = acc; 
-				++i;
+				accounts.add(acc);
 			}
 			reader.close();
 		
 		} catch (IOException x) {
 			System.err.println(x);
 		}
-		
-		accounts = Arrays.asList(account);
-		
+				
 		BufferedReader reader2 = null;
 		try {
 			reader2 = new BufferedReader(new FileReader("/home/andy/ATM_RMI/balances.txt"));
-			String blc = null;
-			int j = 0;
+			String blc;
 			while ((blc = reader2.readLine()) != null)
 			{
-				balance[j] = blc; 
-				++j;
+				balances.add(blc);
 			}
 			reader2.close();
 		
 		} catch (IOException x) {
 			System.err.println(x);
 		}
-		
-		balances = Arrays.asList(balance);
 		
 		String a = String.valueOf(acnt1);
 		String b = String.valueOf(acnt2);
@@ -295,28 +189,16 @@ public class Server_Object implements Server_Client_Interface {
 		
 		balances.set(index2, dpt);
 
-/*		try {
-			Path file = Paths.get("/home/andy/ATM_RMI/balances.txt");
-			Charset charset = Charset.forName("UTF-8");
-			Files.write(file, balances, charset);
-			
+		try {
+		    BufferedWriter writer= new BufferedWriter(new FileWriter("/home/andy/ATM_RMI/balances.txt", false));
+		    for (int k = 0; k < 12; k++){
+		    	writer.write(balances.get(k));
+		    	writer.newLine();
+		    }
+		    writer.close();
+		
 		} catch (IOException x) {
 			System.err.println(x);
-		}
-*/
-		balance = (String[]) balances.toArray();
-		
-		try {
-			BufferedWriter writer = new BufferedWriter(new FileWriter("/home/andy/ATM_RMI/balances.txt"));
-			int k = 0;
-			while ((balance[k]) != null)
-			{
-				writer.write(balance[k]+"\n");
-				++k;
-			}
-			writer.close();
-		} catch (IOException x) {
-		    System.err.format("IOException:" + x);
 		}
 		
 		System.out.println("$" + amt + " successfully transfered from account " + acnt1 + " to account " + acnt2 + ".");
@@ -325,33 +207,13 @@ public class Server_Object implements Server_Client_Interface {
 	@Override
 	public int inquiry(int acnt) throws RemoteException{
 		
-/*		try {
-			Path file = Paths.get("/home/andy/ATM_RMI/accounts.txt");
-			Charset charset = Charset.forName("UTF-8");
-			accounts = Files.readAllLines(file, charset);
-			
-		} catch (IOException x) {
-			System.err.println(x);
-		}
-		
-		try {
-			Path file = Paths.get("/home/andy/ATM_RMI/balances.txt");
-			Charset charset = Charset.forName("UTF-8");
-			balances = Files.readAllLines(file, charset);
-			
-		} catch (IOException x) {
-			System.err.println(x);
-		}
-*/
 		BufferedReader reader = null;
 		try {
 			reader = new BufferedReader(new FileReader("/home/andy/ATM_RMI/accounts.txt"));
-			String acc = null;
-			int i = 0;
+			String acc;
 			while ((acc = reader.readLine()) != null)
 			{
-				account[i] = acc; 
-				++i;
+				accounts.add(acc);
 			}
 			reader.close();
 		
@@ -359,25 +221,19 @@ public class Server_Object implements Server_Client_Interface {
 			System.err.println(x);
 		}
 				
-		accounts = Arrays.asList(account);
-		
 		BufferedReader reader2 = null;
 		try {
 			reader2 = new BufferedReader(new FileReader("/home/andy/ATM_RMI/balances.txt"));
-			String blc = null;
-			int j = 0;
+			String blc;
 			while ((blc = reader2.readLine()) != null)
 			{
-				balance[j] = blc; 
-				++j;
+				balances.add(blc);
 			}
 			reader2.close();
 		
 		} catch (IOException x) {
 			System.err.println(x);
 		}
-		
-		balances = Arrays.asList(balance);
 		
 		String a = String.valueOf(acnt);
 		
