@@ -33,9 +33,7 @@ public class Client {
 	        }
 	        
 		setParameters(args);
-	/*	try { scinterface = (Server_Client_Interface)Naming.lookup(server); }
-		catch(Exception e) { System.out.println("Client exception:  " + e); }
-	*/	
+	
 		int i = callFunction(args);
 		if (i == 0)
 		{
