@@ -1,1 +1,11 @@
 /bin
+/client
+/interact
+/server
+/accounts.txt
+/balances.txt
+/commands.txt
+/database
+/interact.jar
+/Makefile
+/policy
