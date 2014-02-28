@@ -1,0 +1,3 @@
+grant codeBase "file:/home/andy/ATM_RMI/" {
+    permission java.security.AllPermission;
+};

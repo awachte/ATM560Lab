@@ -147,7 +147,7 @@ public class Client {
 		{
 			Client.inquiry(val1);
 			return 1;
-		} 
+		}
 		else if (function.equals("withdraw") && args.length == 3) 
 		{
 			Client.withdraw(val1, val2);
