@@ -1,0 +1,3 @@
+withdraw 1001 5
+inquiry 1005
+transfer 1002 1003 50
